@@ -1,0 +1,16 @@
+	<MsgSig>
+		<Description>!1 @1</Description>
+		<Key>in@1</Key>
+		<ByteString0>#1</ByteString0>
+		<ByteString1>#2</ByteString1>
+		<ByteString2>#3</ByteString2>
+		<ByteString3>#4</ByteString3>
+		<ByteString4>#5</ByteString4>
+		<ByteString4>#6</ByteString5>
+		<ByteString4>#7</ByteString6>
+		<ByteString4>#8</ByteString7>
+		<ByteString4>#9</ByteString8>
+		<NetworkKey>net0</NetworkKey>
+		<ResponseKey>out@1</ResponseKey>
+		<FlowCArbId>$1</FlowCArbId>
+	</MsgSig>

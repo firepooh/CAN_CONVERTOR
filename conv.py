@@ -2,7 +2,11 @@ import pandas as pd
 
 # 파일 경로
 import sys
-origin_path = sys.argv[1] if len(sys.argv) > 1 else '/mnt/data/SSU_ORIGIN.txt'
+if len(sys.argv) > 1:
+    origin_path = sys.argv[1]
+else:
+    print("경고: 명령줄 인자가 필요합니다. 변환할 파일 이름이나 경로를 입력하세요.")
+    sys.exit(1)  # 비정상 종료
 import os
 working_path = os.path.splitext(origin_path)[0] + "_modify" + os.path.splitext(origin_path)[1]
 
@@ -11,16 +15,30 @@ def read_file(file_path):
     with open(file_path, 'r') as file:
         return file.readlines()
 
-# reqid와 rspid 추출 함수
+# reqid, rspid, system 추출 함수
 def extract_ids(data):
     reqid = None
     rspid = None
-    for line in data[:2]:
+    system = None
+    for line in data[:3]:
         if 'reqid' in line:
             reqid = line.strip().split('\t')[1]
         if 'rspid' in line:
             rspid = line.strip().split('\t')[1]
-    return reqid, rspid
+        if 'system' in line:
+            system = line.strip().split('\t')[1]
+
+    # 유효성 검사
+    if reqid is None or rspid is None or system is None:
+        print("경고: reqid, rspid, 또는 system 값이 누락되었습니다. 프로그램을 종료합니다.")
+        print("VSPY에서 변환된 파일에서, 3가지 항목을 수동 기입해야 합니다.")
+        print("ex) 탭으로 분리 합니다. Space로 분리하면 안됩니다. ")
+        print("reqid\t0x10")
+        print("rspid\t0x20")
+        print("system\tBMS")
+        sys.exit(1)  # 비정상 종료
+
+    return reqid, rspid, system
 
 # 중복 제거 후 빈 라인으로 대체
 def remove_duplicates_with_blanks(data):
@@ -150,8 +168,8 @@ def save_file(data, output_path):
 # 실행 부분
 origin_data = read_file(origin_path)
 
-reqid, rspid = extract_ids(origin_data)
-print(f"reqid: {reqid}, rspid: {rspid}")
+reqid, rspid, system = extract_ids(origin_data)
+print(f"reqid: {reqid}, rspid: {rspid}, system: {system}")
 
 #modify_data = remove_duplicates_with_blanks(origin_data)
 
@@ -172,7 +190,7 @@ modify_data = add_blank_after_rspid(modify_data, reqid, rspid)
 modify_data = remove_duplicate_reqid_and_next(modify_data, reqid)
 
 output_path = working_path
-save_file(modify_data, output_path)
 
+save_file(modify_data, output_path)
 
 output_path
