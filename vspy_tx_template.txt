@@ -1,0 +1,14 @@
+	<TxMsg>
+		<Key>out@1</Key>
+		<TxMsgProperties>
+			<MsgSig>
+				<Description>!1 @1</Description>
+				<Key>out@1</Key>
+				<ByteString0>$1</ByteString0>
+				<ByteString1>L,#</ByteString1>
+				<NetworkKey>net0</NetworkKey>
+				<EnableISO15765>True</EnableISO15765>
+				<EnableTCPConnections>False</EnableTCPConnections>
+			</MsgSig>
+		</TxMsgProperties>
+	</TxMsg>
