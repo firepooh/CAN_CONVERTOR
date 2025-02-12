@@ -53,13 +53,24 @@ def remove_duplicates_with_blanks(data):
     return unique_lines
 
 # reqid로 시작하는 라인에서 B1이 0x30일 때 삭제하는 함수
-# reqid로 시작하는 라인에서 B1이 0x30일 때 삭제하는 함수
 def remove_lines_with_b1_30(data, reqid):
     filtered_lines = []
     for line in data:
         if line.startswith(reqid):
             parts = line.strip().split('\t')
             if len(parts) > 1 and int(parts[1], 16) == 0x30:
+                continue
+        if line.strip():  # 빈 줄이 아닌 경우에만 추가
+            filtered_lines.append(line)
+    return filtered_lines
+
+# rspid로 시작하는 라인에서 B2 == 0x7F && B4 == 0x78 일 때 삭제하는 함수
+def remove_lines_with_flowcontrol(data, rspid):
+    filtered_lines = []
+    for line in data:
+        if line.startswith(rspid):
+            parts = line.strip().split('\t')
+            if len(parts) > 4 and int(parts[2], 16) == 0x7F and int(parts[4], 16) == 0x78:
                 continue
         if line.strip():  # 빈 줄이 아닌 경우에만 추가
             filtered_lines.append(line)
@@ -173,7 +184,9 @@ print(f"reqid: {reqid}, rspid: {rspid}, system: {system}")
 
 #modify_data = remove_duplicates_with_blanks(origin_data)
 
-modify_data = remove_lines_with_b1_30(origin_data, reqid)
+modify_data = remove_lines_with_flowcontrol(origin_data, rspid)
+
+modify_data = remove_lines_with_b1_30(modify_data, reqid)
 
 modify_data = trim_trailing_zeros(modify_data, reqid)
 
