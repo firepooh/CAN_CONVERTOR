@@ -10,8 +10,6 @@
 3. conv_csv2txt2.py : csv 필요없는 컬럼 제거
    ex> conv_csv2txt2.py bcm1.vsb       : default 설정된 컬럼 제거("Line", "Abs Time(Sec)", "Rel Time (Sec)", "Status", "Er","Tx","Description","Network","Node","Trgt","Src","Value","Trigger","Signals")
        conv_csv2txt.py bcm1.vsb Line,Status : Line,Status 컬럼 제거
-       bcm12.vsb : 출력물
-  
 
 
 
