@@ -14,7 +14,7 @@ def delete_columns(file_path, columns_to_delete):
 
         # 현재 컬럼 목록 출력
         available_columns = list(df.columns)
-        print("\n📌 현재 컬럼 목록:", available_columns, "\n")
+        #print(f"✅ 현재 컬럼 목록:", available_columns, "\n")
 
         # 사용자 입력 컬럼 처리
         if columns_to_delete:
@@ -27,7 +27,7 @@ def delete_columns(file_path, columns_to_delete):
 
         # 선택한 컬럼 삭제 (존재하지 않는 컬럼 무시)
         df = df.drop(columns=columns_list, errors="ignore")
-        print(f"✅ 삭제된 컬럼: {columns_list}\n")
+        #print(f"✅ 삭제된 컬럼: {columns_list}\n")
 
         # 출력 파일명 설정 (2.csv)
         base_name, _ = os.path.splitext(file_path)

@@ -28,7 +28,7 @@ def delete_lines(file_path, lines_to_delete="1-134"):
         with open(modified_file_path, "w", encoding="utf-8") as file:
             file.writelines(new_lines)
 
-        print(f"✅ 삭제 완료! '{modified_file_path}'에 저장되었습니다.")
+        print(f"✅ 라인 삭제 완료! '{modified_file_path}'에 저장되었습니다.")
 
     except FileNotFoundError:
         print(f"❌ 오류: '{file_path}' 파일을 찾을 수 없습니다.")

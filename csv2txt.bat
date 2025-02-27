@@ -27,6 +27,6 @@ python conv_csv2txt3.py %FILENAME3%
 IF EXIST %FILENAME2% del %FILENAME2%
 IF EXIST %FILENAME3% del %FILENAME3%
 
-echo ✅ 모든 작업이 완료되었습니다.
+echo ✅ 배치 파일 1,2,3 작업이 완료되었습니다.
 
 ENDLOCAL

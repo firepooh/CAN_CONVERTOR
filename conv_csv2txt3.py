@@ -45,7 +45,7 @@ def convert_csv_to_excel(input_csv):
     # 엑셀 파일 저장
     wb.save(output_excel)
 
-    print(f"✅ 엑셀 파일 변환 완료: {output_excel}")
+    print(f"✅ 엑셀 변환 완료! '{output_excel}'에 저장되었습니다.")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="CSV 파일을 엑셀 파일로 변환하고 첫 번째 행을 필터(테이블 헤더)로 설정합니다.")
