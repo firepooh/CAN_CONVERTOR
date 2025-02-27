@@ -7,7 +7,7 @@ DEFAULT_COLUMNS = ["Line", "Abs Time(Sec)", "Rel Time (Sec)", "Status", "Er","Tx
                    "Trgt","Src","Value","Trigger","Signals" ]  # 필요에 따라 컬럼 추가 가능
 
 def delete_columns(file_path, columns_to_delete):
-    """CSV 파일에서 기본 컬럼 + 사용자 지정 컬럼을 삭제하고 '_colremove.csv'로 저장"""
+    """CSV 파일에서 기본 컬럼 + 사용자 지정 컬럼을 삭제하고 '2.csv'로 저장"""
     try:
         # CSV 파일 읽기
         df = pd.read_csv(file_path, delimiter=",")
@@ -29,9 +29,9 @@ def delete_columns(file_path, columns_to_delete):
         df = df.drop(columns=columns_list, errors="ignore")
         print(f"✅ 삭제된 컬럼: {columns_list}\n")
 
-        # 출력 파일명 설정 (_colremove.csv)
+        # 출력 파일명 설정 (2.csv)
         base_name, _ = os.path.splitext(file_path)
-        modified_file_path = f"{base_name}_colremove.csv"
+        modified_file_path = f"{base_name}2.csv"
 
         # 수정된 내용 저장
         df.to_csv(modified_file_path, index=False, sep=",")
@@ -44,7 +44,7 @@ def delete_columns(file_path, columns_to_delete):
 
 if __name__ == "__main__":
     # 명령줄 인자 파싱
-    parser = argparse.ArgumentParser(description="CSV 파일에서 특정 컬럼을 삭제하고 '_colremove.csv'로 저장합니다.")
+    parser = argparse.ArgumentParser(description="CSV 파일에서 특정 컬럼을 삭제하고 '2.csv'로 저장합니다.")
     parser.add_argument("file", help="CSV 파일 경로 (예: data.csv)")
     parser.add_argument("columns", nargs="?", default="", help="삭제할 컬럼 이름 (쉼표로 구분, 예: A,B,C). 입력 없으면 기본 컬럼만 삭제")
 
