@@ -1,3 +1,8 @@
+@ 파이썬 추가 설치 필요한 라이브러리
+pip install pandas
+pip install openpyxl
+
+
 @ 파일 변환 과정
 1. vspy 프로그램내에서 (*.vsb)로그 파일을 (*.csv) 형태로 변환
    ex> bcm.vsb -> bcm.csv
@@ -12,7 +17,10 @@
        conv_csv2txt.py bcm1.vsb Line,Status : Line,Status 컬럼 제거
        bcm12.csv : 출력물
 
-4. csv2txt.bat : 2번, 3번을 한번에 실행 해주는 배치 파일
+4. conv_csv2txt3.py : 행,컬럼 제거된 csv에서 첫 라인을 필터로 설정 후 .xlsx 로 저장
+
+5. csv2txt.bat : 2,3,4번 작업을 한번에 실행 해주는 배치 파일
    ex> csv2txt.bat bcm.csv
-       bcm1.csv : 출력물
-       bcm12.csv : 출력물
+       bcm12.xlsx : 출력물
+ 
+
