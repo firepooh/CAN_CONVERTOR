@@ -8,7 +8,7 @@ else:
     print("경고: 명령줄 인자가 필요합니다. 변환할 파일 이름이나 경로를 입력하세요.")
     sys.exit(1)  # 비정상 종료
 import os
-working_path = os.path.splitext(origin_path)[0] + "_modify" + os.path.splitext(origin_path)[1]
+working_path = os.path.splitext(origin_path)[0] + "1" + os.path.splitext(origin_path)[1]
 
 # 파일 읽기
 def read_file(file_path):
