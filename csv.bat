@@ -14,18 +14,26 @@ SET FILENAME2=%~n11%~x1
 SET FILENAME3=%~n112%~x1
 
 :: 라인 제거 스크립트 실행
-python conv_csv2txt.py %FILENAME1%
+python csv1.py "%FILENAME1%.csv"
 
 :: 컬럼 제거 실행
-python conv_csv2txt2.py %FILENAME2%
+python csv2.py "%FILENAME2%.csv"
 
 :: 첫 라인 필터 설정 후 .xlsx 형식으로 저장
-python conv_csv2txt3.py %FILENAME3%
+python csv3.py "%FILENAME3%.csv"
 
 
 :: 임시 파일 삭제 (나중에 디버깅시에는 주석 처리 해서 단계별로 확인 필요)
-IF EXIST %FILENAME2% del %FILENAME2%
-IF EXIST %FILENAME3% del %FILENAME3%
+IF EXIST "%FILENAME2%.csv" del "%FILENAME2%.csv"
+IF EXIST "%FILENAME3%.csv" del "%FILENAME3%.csv"
+
+:: FILENAME3.xlsx → FILENAME1.xlsx 으로 리네임
+IF EXIST "%FILENAME3%.xlsx" (
+    ren "%FILENAME3%.xlsx" "%FILENAME1%.xlsx"
+    echo ✅ %FILENAME3%.xlsx has been renamed to %FILENAME1%.xlsx
+) ELSE (
+    echo ❌ %FILENAME3%.xlsx does not exist!
+)
 
 echo ✅ 배치 파일 1,2,3 작업이 완료되었습니다.
 

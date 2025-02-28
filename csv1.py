@@ -1,3 +1,7 @@
+#csv1.py 
+#csv 파일의 특정 라인을 삭제 'XXX1.csv'로 저장하는 프로그램
+
+
 import os
 import argparse
 

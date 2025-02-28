@@ -1,3 +1,5 @@
+# Description: CSV 파일에서 특정 컬럼을 삭제하고 '2.csv'로 저장하는 스크립트
+
 import pandas as pd
 import os
 import argparse
