@@ -4,7 +4,7 @@ SETLOCAL ENABLEDELAYEDEXPANSION
 
 :: 파일 이름을 입력했는지 확인
 IF "%~1"=="" (
-    echo 사용법: txt2vspy.bat 파일명.txt
+    echo 사용법: vspy.bat 파일명.txt
     exit /b 1
 )
 
@@ -12,11 +12,14 @@ IF "%~1"=="" (
 SET FILENAME1=%~1
 
 :: vspy rx
-python conv_vspy_rx.py %FILENAME1%
+python vspy2rx.py "%FILENAME1%.txt"
 
 :: vspy tx
-python conv_vspy_tx.py %FILENAME1%
+python vspy3tx.py "%FILENAME1%.txt"
 
-echo ✅ 배치 파일 1,2 작업이 완료되었습니다.
+:: 최종 vspy 파일 생성
+python vspy4.py %FILENAME1%
+
+echo ✅ 배치 파일 1,2,3 작업이 완료되었습니다.
 
 ENDLOCAL

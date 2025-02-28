@@ -4,7 +4,26 @@ pip install pandas
 pip install openpyxl
 ========================================================================================
 
+@ 퀵 가이드
+========================================================================================
+ex> bcm.csv 원본 파일
 
+1. csv.bat bcm
+   입력 : bcm.csv
+   출력 : bcm.xlsx
+   수동출력 : bcm.txt
+   bcm.txt에 아래와 같이 추가 정보 입력(탭으로 분리)
+   reqid	754
+   rspid	75C
+   system	BCM
+
+2. vspy1.py bcm.txt 
+   출력물 가공
+
+3. vspy.bat 
+
+
+========================================================================================
 
 @ 1차 파일 변환 과정. (vspy log 파일에서 필요한 canid 데이터만 추출하여 txt로 저장)
 ========================================================================================
@@ -53,4 +72,16 @@ PT	B1	B2	B3	B4	B5	B6	B7	B8
 75C	1	7E	00	00	00	00	00	00
 754	2	A8	01	00	00	00	00	00
 
-2. conv_vspy.py : can log data 에서 vspy에 맞게 
+2. vspy1.py : vspy에 입력 가능하게 req/rsp 쌍으로 데이터 정렬
+ex> vspy1.py bcm.txt
+    bcm1.txt : 출력물 (수동으로 데이터 확인 해야 함)
+
+3. vspy2rx.py : "vspy_rx_template.txt" 이용하여 rx signal 정의 
+ex> vspy2rx.py bcm1.txt
+    bcm1_VspyRx.txt : 출력물
+
+4. vspy3tx.py : "vspy_tx_template.txt" 이용하여 tx signal 정의 
+ex> vspy3tx.py bcm1.txt
+    bcm1_VspyTx.txt : 출력물
+
+5. vspy4.py : 3번,4번 정의 signal을 이용하여 최종 vspy 용 *.vs3 파일 생성

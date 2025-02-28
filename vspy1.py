@@ -1,3 +1,5 @@
+# 1차 가공물에서 vspy용 설정 파일 변환을 위한 준비
+
 import pandas as pd
 
 # 파일 경로

@@ -1,9 +1,14 @@
 import argparse
 import os
 
-def insert_data(template_file, msgsigs_file, txmsgs_file, output_file):
-    """vspy_template.txt에 MsgSigs 및 TxMsgs 내용을 삽입하여 새로운 파일로 저장"""
-    
+def insert_data(base_filename):
+    """'vspy_template.txt'에 MsgSigs 및 TxMsgs 내용을 삽입하여 새로운 파일로 저장"""
+
+    template_file = "vspy_template.txt"  # 템플릿 파일 고정
+    msgsigs_file = f"{base_filename}_VspyRx.txt"  # 첫 번째 입력 파일
+    txmsgs_file = f"{base_filename}_VspyTx.txt"  # 두 번째 입력 파일
+    output_file = f"{base_filename[:-1]}.vs3"  # 출력 파일 (마지막 숫자 제거)
+
     # 템플릿 파일 읽기
     with open(template_file, "r", encoding="utf-8") as f:
         template_content = f.read()
@@ -29,12 +34,9 @@ def insert_data(template_file, msgsigs_file, txmsgs_file, output_file):
     print(f"✅ 파일 변환 완료! 저장된 파일: {output_file}")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="vspy_template.txt 파일에 입력파일1과 입력파일2 내용을 삽입하여 새로운 파일 생성")
-    parser.add_argument("template_file", help="vspy_template.txt 파일 경로")
-    parser.add_argument("msgsigs_file", help="입력 파일1 (MsgSigs에 삽입할 파일) 경로")
-    parser.add_argument("txmsgs_file", help="입력 파일2 (TxMsgs에 삽입할 파일) 경로")
-    parser.add_argument("output_file", help="출력 파일 경로")
+    parser = argparse.ArgumentParser(description="vspy_template.txt 파일에 데이터를 삽입하여 새로운 .vs3 파일 생성")
+    parser.add_argument("base_filename", help="기본 파일 이름 (예: bcm1)")
 
     args = parser.parse_args()
     
-    insert_data(args.template_file, args.msgsigs_file, args.txmsgs_file, args.output_file)
+    insert_data(args.base_filename)
