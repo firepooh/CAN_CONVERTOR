@@ -20,6 +20,10 @@ python vspy3tx.py "%FILENAME1%.txt"
 :: 최종 vspy 파일 생성
 python vspy4.py %FILENAME1%
 
+:: 임시 파일 삭제 (나중에 디버깅시에는 주석 처리 해서 단계별로 확인 필요)
+IF EXIST "%FILENAME1%_VspyRx.txt" del "%FILENAME1%_VspyRx.txt"
+IF EXIST "%FILENAME1%_VspyTx.txt" del "%FILENAME1%_VspyTx.txt"
+
 echo ✅ 배치 파일 1,2,3 작업이 완료되었습니다.
 
 ENDLOCAL

@@ -8,20 +8,20 @@ pip install openpyxl
 ========================================================================================
 ex> bcm.csv 원본 파일
 
-1. csv.bat bcm
+1. csv.bat bcm (확장자 없이 이름만)
    입력 : bcm.csv
    출력 : bcm.xlsx
    수동출력 : bcm.txt
-   bcm.txt에 아래와 같이 추가 정보 입력(탭으로 분리)
+   bcm.txt에 아래와 같이 추가 정보 수동으로 입력(탭으로 분리)
    reqid	754
    rspid	75C
    system	BCM
 
 2. vspy1.py bcm.txt 
-   출력물 가공
+   bcm1.txt : 출력물 가공 (수동으로 데이터 확인 해야 함)
 
-3. vspy.bat 
-
+3. vspy.bat bcm1
+   bcm.vs3 : 최종 출력물
 
 ========================================================================================
 
@@ -85,3 +85,11 @@ ex> vspy3tx.py bcm1.txt
     bcm1_VspyTx.txt : 출력물
 
 5. vspy4.py : 3번,4번 정의 signal을 이용하여 최종 vspy 용 *.vs3 파일 생성
+   vspy4.py bcm1
+   bcm.vs3 : vspy 설정 파일 생성.
+
+6. vspy.bat : 3번,4번,5번 한번에 실행 하는 배치 파일
+ex> vspy.bat bcm1 
+    bcm1_VspyRx.txt : 중간 출력물
+    bcm1_VspyTx.txt : 중간 출력물
+    bcm.vs3 : 최종 출력물
