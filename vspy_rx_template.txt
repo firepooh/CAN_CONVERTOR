@@ -10,6 +10,7 @@
 		<ByteString4>#7</ByteString6>
 		<ByteString4>#8</ByteString7>
 		<ByteString4>#9</ByteString8>
+		<XtdFrame>%1</XtdFrame>
 		<NetworkKey>net0</NetworkKey>
 		<ResponseKey>out@1</ResponseKey>
 		<FlowCArbId>$1</FlowCArbId>

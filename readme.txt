@@ -17,7 +17,7 @@ ex> bcm.csv 원본 파일
    rspid	75C
    system	BCM
 
-2. vspy1.py bcm.txt 
+2. vspy1.py bcm.txt 또는 python vspy1.py bcm.txt
    bcm1.txt : 출력물 가공 (수동으로 데이터 확인 해야 함)
 
 3. vspy.bat bcm1

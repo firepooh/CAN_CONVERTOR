@@ -1,0 +1,7 @@
+25.03.19
+
+- vspy_rx_template.txt : template 파일에서 ext can id 지원 할수 있도록 함.(%1)
+- vspy_tx_template.txt : template 파일에서 ext can id 지원 할수 있도록 함.(%1)
+- vspy2rx.py : reqid 가 3자리 초과 하면 ext can id로 설정 함.
+- vspy2tx.py : rspid 가 3자리 초과 하면 std can id로 설정 함.
+- vspy4.py : 출력 파일이 이미 존재하면 먼저 삭제함.

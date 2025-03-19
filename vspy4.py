@@ -9,6 +9,10 @@ def insert_data(base_filename):
     txmsgs_file = f"{base_filename}_VspyTx.txt"  # 두 번째 입력 파일
     output_file = f"{base_filename[:-1]}.vs3"  # 출력 파일 (마지막 숫자 제거)
 
+    # 기존 output 파일 삭제
+    if os.path.exists(output_file):
+        os.remove(output_file)
+
     # 템플릿 파일 읽기
     with open(template_file, "r", encoding="utf-8") as f:
         template_content = f.read()

@@ -1,4 +1,4 @@
-# Implementing the provided logic to transform `test_modify.txt` into the format specified by `vspy_rx_template.txt`.
+# Implementing the provided logic to transform `test_modify.txt` into the format specified by `vspy_tx_template.txt`.
 import re  # 정규표현식 모듈 추가
 
 # 파일 경로
@@ -48,25 +48,14 @@ def generate_msgsig_entries(rspid, data_lines):
             entry = {
                 "@1": msg_counter,
                 "#": data_string,
-                "$1": rspid
+                "$1": rspid,
+                "%1": "True" if len(rspid) > 3 else "False",
             }
             msg_counter += 1
             entries.append(entry)
     return entries
 
-def remove_empty_lines(formatted_msgs):
-    """
-    Remove lines with empty data (e.g., <ByteString4></ByteString5>) from each message.
-    """
-    cleaned_msgs = []
-    for msg in formatted_msgs:
-        # Remove lines matching empty placeholders
-        cleaned_msg = "\n".join([line for line in msg.splitlines() if not re.search(r"<.*?>\s*</.*?>", line.strip())])
-        cleaned_msgs.append(cleaned_msg)
-    return cleaned_msgs
-
-
-def format_vspy_rx_template(system, rspid, entries, template_path, output_path):
+def format_vspy_tx_template(system, rspid, entries, template_path, output_path):
     with open(template_path, 'r') as file:
         template = file.read()
 
@@ -75,18 +64,16 @@ def format_vspy_rx_template(system, rspid, entries, template_path, output_path):
     for entry in entries:
         formatted_msg = template
         formatted_msg = formatted_msg.replace("!1", system)
-        #formatted_msg = formatted_msg.replace("$1", entry["$1"])
         formatted_msg = formatted_msg.replace("$1", rspid)
-        #print(f"Debug: Replacing $1 with {rspid}")
         formatted_msg = formatted_msg.replace("@1", str(entry["@1"]))
         formatted_msg = formatted_msg.replace("#", entry["#"])
+        formatted_msg = formatted_msg.replace("%1", entry["%1"])  # 적용된 부분
         formatted_msgs.append(formatted_msg)
 
     with open(output_path, 'w') as file:
         file.write("\n".join(formatted_msgs))
 
     return formatted_msgs
-
 
 # Parse input file
 reqid, rspid, system, data_lines = parse_input_file(input_file_path)
@@ -96,7 +83,7 @@ print(f"Extracted REQID: {reqid}, RSPID: {rspid}, SYSTEM_NAME: {system}")  # 디
 msgsig_entries = generate_msgsig_entries(rspid, data_lines)
 
 # Format and write the output
-formatted_output = format_vspy_rx_template(system, rspid, msgsig_entries, template_file_path, output_file_path)
+formatted_output = format_vspy_tx_template(system, rspid, msgsig_entries, template_file_path, output_file_path)
 
 # Returning the formatted output to user
 #formatted_output

@@ -54,6 +54,7 @@ def generate_msgsig_entries(reqid, data_lines):
                 '#8': line[7] if len(line) > 7 else "",
                 '#9': line[8] if len(line) > 8 else "",
                 '@1': msg_sig_counter,
+                '%1': "True" if len(reqid) > 3 else "False",
             }
             msg_sig_counter += 1
             entries.append(entry)

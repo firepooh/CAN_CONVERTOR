@@ -6,6 +6,7 @@
 				<Key>out@1</Key>
 				<ByteString0>$1</ByteString0>
 				<ByteString1>L,#</ByteString1>
+				<XtdFrame>%1</XtdFrame>
 				<NetworkKey>net0</NetworkKey>
 				<EnableISO15765>True</EnableISO15765>
 				<EnableTCPConnections>False</EnableTCPConnections>
